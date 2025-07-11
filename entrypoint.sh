@@ -16,4 +16,4 @@ echo "📥 Importando datos iniciales..."
 python manage.py loaddata plazia_seed_data.json
 
 echo "🚀 Iniciando servidor..."
-gunicorn plazia_api.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn plazia_api.wsgi:application --log-file -
