@@ -6,7 +6,10 @@ set -e
 # 1. Crear directorio staticfiles con permisos adecuados
 echo "🛠 Creando directorio staticfiles si no existe..."
 mkdir -p /opt/render/project/src/staticfiles
+mkdir -p /opt/render/project/src/static
+
 chmod -R 755 /opt/render/project/src/staticfiles
+chmod -R 755 /opt/render/project/src/static
 
 echo "✅ Instalando dependencias..."
 pip install -r requirements.txt
