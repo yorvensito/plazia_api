@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
 import dj_database_url
@@ -141,11 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
-if DEBUG:
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-else:
-    STATIC_ROOT = "/opt/render/project/src/staticfiles"
-STATIC_URL = "/static/"
+# if DEBUG:
+#     STATIC_ROOT = BASE_DIR / "staticfiles"
+# else:
+STATIC_ROOT = "/opt/render/project/src/staticfiles"
+# STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -181,3 +182,19 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Para producción
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+# Configuración de Simple JWT con python-decouple
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(
+        minutes=config("ACCESS_TOKEN_LIFETIME_MINUTES", default=30, cast=int)
+    ),
+    "REFRESH_TOKEN_LIFETIME": timedelta(
+        days=config("REFRESH_TOKEN_LIFETIME_DAYS", default=30, cast=int)
+    ),
+    "SIGNING_KEY": config("SIGNING_KEY"),  # Nueva variable requerida
+    "ALGORITHM": "HS256",
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+}
