@@ -49,6 +49,8 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     "rest_framework_simplejwt",
     "django_filters",
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 
@@ -154,8 +156,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]  # Si tienes archivos adic
 
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
-MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
+# MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Para producción
@@ -205,3 +207,11 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
     "UPDATE_LAST_LOGIN": True,
 }
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config("CLOUD_NAME"),
+    'API_KEY': config("API_KEY"),
+    'API_SECRET': config("API_SECRET"),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

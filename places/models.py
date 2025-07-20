@@ -31,6 +31,7 @@ class Place(models.Model):
         blank=True,
         default="defaults/default_place_cover.jpg",
     )
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

@@ -25,8 +25,8 @@ class PlaceViewSet(viewsets.ModelViewSet):
         filters.SearchFilter,
         filters.OrderingFilter,
     ]
-    filterset_fields = ["category", "created_at"]
-    search_fields = ["name", "description"]
+    filterset_fields = ["category", "created_at", "is_active"]
+    search_fields = ["name", "description", ]
     ordering_fields = ["rating", "created_at"]
     ordering = ["-rating"]
 
